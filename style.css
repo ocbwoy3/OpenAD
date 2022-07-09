@@ -1,0 +1,36 @@
+
+body {
+    /* another font */
+    font-family: 'Open Sans', sans-serif;
+    /* make it full width */
+    width: 100%;
+    /* make it at pos 0 */
+    position: absolute;
+    /* make it at the top */
+    top: 0;
+    /* make it at the left */
+    left: 0;
+    /* make it at the bottom */
+    bottom: 0;
+    /* make it at the right */
+    right: 0;
+    /* make it at the center */
+    margin: auto;
+    /* make it at the center */
+    text-align: center;
+    
+    /* night sky background */
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2FBMrmUGk.jpg&f=1&nofb=1");
+    /* make the background image blurry */
+    background-blend-mode: multiply;
+
+    color:white;
+}
+
+.logo {
+    filter: blur(1px)
+}
+
+.hidden {
+    display: none;
+}
