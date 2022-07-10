@@ -108,3 +108,19 @@ app.get("/ad", (req, res) => {
         res.send("0;Invalid Username and/or token, please try again");	// return 400
     }
 });
+
+// to prevent caching
+
+app.post("/ad", (req, res) => {
+    // check if user is authorized
+    var username = req.query.username;
+    var token = req.query.token;
+    if (isAuthorized(username, token)) {
+        // return random ad
+        var random_ad = ads[Math.floor(Math.random() * ads.length)];
+        res.send(random_ad);
+    }
+    else {
+        res.send("0;Invalid Username and/or token, please try again");	// return 400
+    }
+});
