@@ -27,4 +27,9 @@ npm install express
 ```
 
 And you're done!
+
 Make sure you have changed the user passwords in the users file! And also make sure to disable DevelMode in index.js and change the developer account username and password!
+
+```bash
+npm start .
+```
