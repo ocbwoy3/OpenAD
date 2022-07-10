@@ -1,5 +1,7 @@
 # OpenAD
 
+**OpenAD was taken so I will come up with a different name for it.**
+
 This repository contains the API for OpenAD, which is a project made by me. OpenAD is a REST API written in NodeJS and is used by Roblox game servers, to request an ad.
 
 This file contains everything on how to get started using OpenAD.
