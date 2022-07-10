@@ -29,7 +29,7 @@ ads = ads.split('\n');
 if (develMode) {
     users.push("Operator" + dbSplitKey + develUser + dbSplitKey + develToken);
     console.log("*** WARNING ***")
-    console.log(`OpenAD API is running in DEVELOPMENT MODE! If you want to use the API in production, please change develMode to false.`);
+    console.log("OpenAD API is running in DEVELOPMENT MODE! If you want to use the API in production, please change develMode to false.");
     console.log("");
     console.log("Developer account details")
     console.log(`Username: ${develUser}`);
@@ -40,7 +40,7 @@ function isAuthorized(username, token) {
     // check if username + dbSplitKey + token is in users and returns rank and authorized
     // loop in ranks
 
-    user_rank = "NON"
+    user_rank = "NON" // just like capyy on Hypixel
     user_authorized = false
 
     for (var i = 0; i < ranks.length; i++) {
@@ -105,7 +105,7 @@ app.get("/ad", (req, res) => {
         res.send(random_ad);
     }
     else {
-        res.send("0;Invalid Username and/or token, please try again");	// return 400
+        res.send("0;/visit OCboy3 on Hypixel Housing");	// return 400
     }
 });
 
@@ -121,6 +121,6 @@ app.post("/ad", (req, res) => {
         res.send(random_ad);
     }
     else {
-        res.send("0;Invalid Username and/or token, please try again");	// return 400
+        res.send("0;/visit OCboy3 on Hypxiel Housing");	// return 400
     }
 });
