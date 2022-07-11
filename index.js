@@ -5,11 +5,14 @@ var ranks = [
     'User','Operator'
 ]
 
+var shutdownPassword = "🤡"
+
 var dbSplitKey = '~';
 
-var develMode = true;
-var develUser = "OpenAD";
-var develToken = "OpenAD"
+var develMode = true; // DO NOT SET TO TRUE IF USING IN PRODUCTION ENVIORMENT
+var develUser = "OpenAD"; // Default: OpenAD
+var develToken = "OpenAD"; // Default: OpenAD
+
 
 app.listen(
     PORT,
@@ -18,23 +21,19 @@ app.listen(
 
 // read database users and ads
 const fs = require('fs');
-var users = fs.readFileSync('users').toString();
-users = users.split('\n');
-
-var ads = fs.readFileSync('ads').toString();
-ads = ads.split('\n');
-
-
+var users = fs.readFileSync('users').toString().split('\n');
+var ads = fs.readFileSync('ads').toString().split('\n');
+var opencomputers = fs.readFileSync('opencomputers').toString().split('\n');
 
 if (develMode) {
     users.push("Operator" + dbSplitKey + develUser + dbSplitKey + develToken);
     console.log("*** WARNING ***")
-    console.log("OpenAD API is running in DEVELOPMENT MODE! If you want to use the API in production, please change develMode to false.");
-    console.log("");
-    console.log("Developer account details")
-    console.log(`Username: ${develUser}`);
-    console.log(`API Token: ${develToken}`);
+    console.log("Running in DEVELOPMENT MODE! If you want to use the API in production, please change develMode to false.");
 }
+
+console.log("To change the ads please edit the ads file and follow this syntax: ImageID;Comment");
+console.log("For OpenComputers (text ads) please edit the opencomputers file and follo this syntax: Text $$$ Comment"); // wth is this? opencomputers ads? is this the old days?
+console.log("To add or remove users please edit the users file and follow this syntax on each line: Rank~Username~Token\n(Make sure ~ is replaced with wathever that is stored in the dbSplitKey variable)");
 
 function isAuthorized(username, token) {
     // check if username + dbSplitKey + token is in users and returns rank and authorized
@@ -75,7 +74,7 @@ app.get("/user", (req, res) => {
     }
 });
 
-app.get("/logo_title_technoblade", (req, res) => {
+app.get("/logo_title_technoblade.png", (req, res) => {
     res.send(fs.readFileSync('logo_title_technoblade.png').toString());
 });
 
@@ -123,4 +122,49 @@ app.post("/ad", (req, res) => {
     else {
         res.send("0;/visit OCboy3 on Hypxiel Housing");	// return 400
     }
+});
+
+// same 4 opencomputers
+app.get("/opencomputers", (req, res) => {
+    //check if user is authorized
+    var username = req.query.username;
+    var token = req.query.token;
+    if (isAuthorized(username, token)) {
+        // return random ad
+        var random_ad = opencomputers[Math.floor(Math.random() * opencomputers.length)];
+        res.send(random_ad.split(" $$$ ")[0]);
+    }
+});
+
+app.post("/opencomputers", (req, res) => {
+    //check if user is authorized
+    var username = req.query.username;
+    var token = req.query.token;
+    if (isAuthorized(username, token)) {
+        // return random ad
+        var random_ad = opencomputers[Math.floor(Math.random() * opencomputers.length)];
+        res.send(random_ad.split(" $$$ ")[0]);
+    }
+});
+
+app.get("/OpenAD/_API_Internals/shutdown", (req, res) => {
+    //check if user is authorized
+    var username = req.query.username;
+    var token = req.query.token;
+    if (isAuthorized(username, token)) {
+        // check if req.query.password = shutdownPassword
+        if (req.query.password == shutdownPassword) {
+            res.send("Izslēdz OpenAD");
+            console.log("[OpenAD] Shutting down..");
+            process.exit(0);
+        } else {
+            res.send("atā");
+        }
+    } else {
+        res.send("atā")
+    }
+});
+
+app.get("/admin/shutdown", (req, res) => {
+    
 });

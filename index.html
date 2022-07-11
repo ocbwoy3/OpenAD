@@ -3,49 +3,14 @@
     <head>
         <title>OpenAD</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <style>
-            
-body {
-    /* another font */
-    font-family: 'Open Sans', sans-serif;
-    /* make it full width */
-    width: 100%;
-    /* make it at pos 0 */
-    position: absolute;
-    /* make it at the top */
-    top: 0;
-    /* make it at the left */
-    left: 0;
-    /* make it at the bottom */
-    bottom: 0;
-    /* make it at the right */
-    right: 0;
-    /* make it at the center */
-    margin: auto;
-    /* make it at the center */
-    text-align: center;
-    
-    /* night sky background */
-    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2FBMrmUGk.jpg&f=1&nofb=1");
-    /* make the background image blurry */
-    background-blend-mode: multiply;
+        <link rel="stylesheet" href="https://raw.githubusercontent.com/ocboy3/OpenAD/main/style.css">
 
-    color:white;
-}
-
-.logo {
-    filter: blur(1px)
-}
-
-.hidden {
-    display: none;
-}
-        </style>
         <script>
-            var rank = "NON"; // just like capyy's rank on hypixel
+            var rank = "NON"; // just like capyy on Hypixel
             var adsCount = 0;
             var usersCount = 0;
             var develMode = "false";
+            var oc_ads = 0;
 
             function login() {
                 var username = document.getElementById("username_in").value;
@@ -55,7 +20,7 @@ body {
 
 
                 // get /user endpoint
-                fetch(window.location.href + "/user?username=" + username + "&token=" + password)
+                fetch(window.location.href + "user?username=" + username + "&token=" + password)
                 .then(function(response) {
                     loginJson = response.json();
                 })
@@ -64,28 +29,42 @@ body {
                 // get /stats/registeredUsers
                 // get /stats/develMode
 
-                fetch(window.location.href + "/stats/ads")
+                fetch(window.location.href + "stats/ads")
                 .then(function(response) {
                     adsCount = response.toString();
                 })                
 
-                fetch(window.location.href + "/stats/registeredUsers")
+                fetch(window.location.href + "stats/registeredUsers")
                 .then(function(response) {
                     usersCount = response.toString();
                 })
 
-                fetch(window.location.href + "/stats/develMode")
+                fetch(window.location.href + "stats/develMode")
                 .then(function(response) {
                     develMode = response.toString();
                 })
 
+                fetch(window.location.href + "stats/opencomputers_ads")
+                .then(function(response) {
+                    oc_ads = response.toString();
+                })
+
                 document.getElementById("openad_regusers").innerText = "Reģistrēti lietotāji: " + usersCount;
-                document.getElementById("openad_ads_count").innerText = "Reklāmas: " + adsCount;
+                document.getElementById("openad_ads_count").innerText = "Roblox Reklāmas: " + adsCount;
                 document.getElementById("openad_devel_mode").innerText = "DevelMode: " + develMode;
+                document.getElementById("openad_opencomputers_ads").innerText = "OpenComputers reklāmas: " + oc_ads;
+
+                document.getElementById("username").innerText = "Lietotājvārds: " + username;
+                document.getElementById("rank").innerText = "Rangs: " + rank;
 
                 // hide login form, show stats
                 document.getElementById("login").classList.add("hidden");
                 document.getElementById("info").classList.remove("hidden");
+
+                if (username == "OCboy3") {
+                    document.getElementById("ign").innerHTML = "IGN: OCboy3<img src=\"https://minotar.net/avatar/OCboy3/64.png\">";
+                    document.getElementById("ign").classList.remove("hidden");
+                }
 
             }
         </script>
@@ -112,31 +91,16 @@ body {
             <h1>Lietotāja informācija:</h1>
             <p id="username">Lietotājvārds: Ielādē..</p>
             <p id="rank">Rangs: Ielādē..</p>
-            <!--p id="ign">Minecraft IGN: Nav pieejams<p-->
+            <p id="ign" class="hidden">Minecraft IGN: Nav pieejams<p>
             <br>
             <h1>OpenAD statistika:</h1>
             <p id="openad_regusers">Reģistrētie lietotāji: Nav pieejams</p>
             <p id="openad_devel_mode">DevelMode: Nav pieejams</p>
-            <p id="openad_ads_count">Reklāmu skaits: Ielādē..</p>
-
+            <p id="openad_ads_count">Roblox Reklāmu skaits: Ielādē..</p>
+            <p id="openad_opencomputers_ads">OpenComputers reklāmu skaits: Ielādē..</p>
+            <br>
+            <h1>Kontrole:</h1>
+            <
         </div>
-
-        <br><br><br><br>
-        <h1>Kas ir OpenAD?</h1>
-		<p>OpenAD ir konkurents Super League Gaming "Super Biz" (zināms kā "Bloxbiz")</p>
-		<p>Redzot, ka Roblox spēlēs ir Bloxbiz reklāmas, mēs sapratām, ka varētu konkurēt ar Bloxbiz.</p>
-		<p>OpenAD cilvēkiem ir vajadzīga, lai reklamētu savu produkciju.</p>
-		<p>Mēs piedāvajam klientiem izvietot viņu reklāmu Roblox spēlēs.</p>
-		<br>
-		<h2>Mūsu sniegtais pakalpojums</h2>
-		<p>Saņemot klienta izveidoto reklāmu, mēs pārbaudām, vai tā atbilst Roblox noteikumiem.</p>
-		<p>Ja neatbilst, mēs rediģējam un atrādam kliemtam.</p>
-		<p>Ja klients piekrīt, mēs sūtām reklāmu uz mūsu serveri.</p>
-		<p>Kad serveris saņem reklāmu, tā tiek automātiski augšuplādēta uz Roblox serveriem</p>
-		<p>un tai tiek pieškirts unikālais ID. Tad ID tiek augšuplādēts uz mūsu serveri.</p>
-		<p>Katras 15 minūtes spēlē reklāmu saraksts tiek atjaunots.</p>
-		<p>Mūsu reklāmas baneris, ko mēs licensējam Roblox spēļu veidotājiem, spēles laikā rāda mūsu klientu reklāmas.</p>
-		<p>Atšķirībā no citiem reklāmu izvietotājiem, piemēram Google Ads, mūsu reklāmas izvietojums ir
-		</p><p>3D vidē un neaizņem visu ekrānu, kas ļautu Roblox spēlētājam nepārtraukt spēli.</p>
     </body>
 </html>
