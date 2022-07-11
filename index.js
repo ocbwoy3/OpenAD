@@ -82,6 +82,11 @@ app.get("/style.css", (req, res) => {
     res.send(fs.readFileSync('style.css').toString());
 });
 
+
+app.get("/shutdown.css", (req, res) => {
+    res.send(fs.readFileSync('shutdown.css').toString());
+});
+
 app.get("/stats/registeredUsers", (req, res) => {
     res.send(users.length.toString());
 });
@@ -166,5 +171,5 @@ app.get("/OpenAD/_API_Internals/shutdown", (req, res) => {
 });
 
 app.get("/admin/shutdown", (req, res) => {
-    
+    res.send(fs.readFileSync('shutdown.html').toString());
 });
