@@ -3,7 +3,7 @@
     <head>
         <title>OpenAD</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://raw.githubusercontent.com/ocboy3/OpenAD/main/style.css">
+        <link rel="stylesheet" href="/style.css">
 
         <script>
             var rank = "NON"; // just like capyy on Hypixel
@@ -67,6 +67,11 @@
                 }
 
             }
+
+            function shutdownAuth() {
+                // open /admin/shutdown
+                open(window.location.href + "admin/shutdown");
+            }
         </script>
     </head>
     <body>
@@ -100,7 +105,7 @@
             <p id="openad_opencomputers_ads">OpenComputers reklāmu skaits: Ielādē..</p>
             <br>
             <h1>Kontrole:</h1>
-            <
+            <button onclick="shutdownAuth()">***Izslēgt OpenAD serverus***</button>
         </div>
     </body>
 </html>

@@ -1,0 +1,59 @@
+.centered {
+    /* center a div */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* put contents center x and y */
+    text-align: center;
+}
+
+body {
+    background-color: #f5f5f5;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.login-container {
+    /* make it rounded, gray with black outline, responsive */
+    border-radius: 5px;
+    background-color: lightgray;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0px 0px 5px #000000;
+    border: 1px solid #5c5c5c;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #5c5c5c;
+    /* make it sized to the content inside of it*/
+    width: 50%;
+    max-width: 500px;
+}
+
+/* change style of the input fields */
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    /* and if input type is password, make the dots bigger and change them to * */
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #5c5c5c;
+    border-radius: 5px;
+}
+
+/* also button 2 submit */
+button {
+    width: 100%;
+    background-color: green;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

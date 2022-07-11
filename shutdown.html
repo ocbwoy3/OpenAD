@@ -2,9 +2,36 @@
 <html lang="en">
     <head>
         <title>OpenAD</title>
-        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/shutdown.css">
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
+        <div class="centered">
+            <img src="/logo_title_technoblade.png" style="filter: blur(1px); width: 75%; height: 75%;">
+            <h1>Nepieciešama autorizācija, lai turpinātu.</h1>
+            <div class="login-container">
+                <script>
+                    function login() {
+                        var username = document.getElementById("username").textContent
+                        var apiKey = document.getElementById("apiKey").textContent
+                        var shutdownPassword = document.getElementById("shutdownPass").textContent
 
+                        fetch(`${window.location.href}OpenAD/_API_Internals/shutdown?username=${username}&token=${apiKey}&password=${shutdownPassword}`)
+                        .then(response => {
+                            alert("Izslēgšana veiksmīga!")
+                        }).catch(error => {
+                            alert("Kļūda: " + error)
+                        })
+                        
+                    }
+                </script>
+
+                <input type="username" id="username" placeholder="Lietotājvārds" name="username">
+                <input type="password" id="apiKey" placeholder="API atslēga" name="password">
+                <input type="password" id="shutdownPass" placeholder="izslēgšanas parole" name="password">
+                <button type="submit" onclick="login()">Pieslēgties</button>
+            </div>
+        </div>
     </body>
 </html>
